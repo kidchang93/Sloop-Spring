@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 
@@ -12,8 +13,10 @@ import java.util.Date;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Valid
 public class MemberDTO {
     private int memberIdx;              // '회원 index',
+
     private String memberEmail;         // '회원 이메일',
     private String memberPassword;      //'회원 비밀번호',
     private String memberNickname;      // '회원 닉네임',
