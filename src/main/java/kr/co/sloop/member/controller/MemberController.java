@@ -57,7 +57,7 @@ public class MemberController {
             return "home"; // 로그인 성공시 세션에 "loginEmail"이란 이름으로 저장 후 studyList or mypage 로 이동
         } else {
             log.info("로그인 실패");
-            return "redirect:member/member/login";    // 로그인 실패시 다시 GetMapping 의 LoginForm으로 redirect
+            return "redirect:/member/login";    // 로그인 실패시 다시 GetMapping 의 LoginForm으로 redirect
         }
     }
 
