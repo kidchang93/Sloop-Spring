@@ -3,6 +3,7 @@ package kr.co.sloop.security;
 import kr.co.sloop.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class SecurityController {
 
+
     private final PasswordEncoder passwordEncoder;
+
     private final MemberMapper memberMapper;
 
     @GetMapping("/accessError")

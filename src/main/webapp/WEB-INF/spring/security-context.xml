@@ -14,19 +14,22 @@
     <bean id="customLoginSuccessHandler" class="kr.co.sloop.security.CustomLoginSuccessHandler"/>
     <!--CustomNoOpPasswordEncoder-->
     <!--Bcrypt 쓰면 안씀-->
-    <!--<bean id="customPasswordEncoder" class="kr.co.chunjae.security.CustomNoOpPasswordEncoder"/>-->
+    <!--<bean id="customPasswordEncoder" class="kr.co.sloop.security.CustomNoOpPasswordEncoder"/>-->
+
+    <!--loginFailHandler-->
+    <bean id="customLoginFailHandler" class="kr.co.sloop.security.CustomLoginFailHandler"/>
     <!--BCryptPasswordEncoder-->
     <!--비밀번호 암호화-->
     <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <!--CustomUserDetailsService-->
-    <!--데이터베이스 통신-->
+    <!--데이터베이스 통신 ( 로그인에서 post 로 받아주는 클래스 ) -->
     <bean id="customUserDetailsService" class="kr.co.sloop.security.CustomUserDetailsService"/>
 
     <security:http>
         <!--<security:form-login/>-->
         <!--접근 제한 설정-->
         <!--누구든지 로그인 페이지에 접근할 수 있다.-->
-        <security:intercept-url pattern="/member/login" access="permitAll()"/>
+        <security:intercept-url pattern="/login" access="permitAll()"/>
         <security:intercept-url pattern="/member/mypage" access="hasRole('ROLE_MEMBER')"/>
         <!--스터디장 (스터디장은 해당 스터디원들 리스트들을 볼 수는 있다.)-->
         <security:intercept-url pattern="/member/" access="hasRole('ROLE_MANAGER')"/>
@@ -38,7 +41,10 @@
         <!--logout-success-url 아님 주의!! 이게 없으면 POST 방식으로 전송을 하지 못함.-->
         <!-- 커스텀 로그인 폼-->
         <!--success 핸들러가 있다면 적어줌-->
-        <security:form-login login-page="/member/loginForm" authentication-success-handler-ref="customLoginSuccessHandler"/>
+        <!--파라미터를 설정하지 않으면 username , password 가 기본값-->
+        <security:form-login login-page="/login" username-parameter="memberEmail" password-parameter="memberPassword"
+                             authentication-success-handler-ref="customLoginSuccessHandler"
+                             authentication-failure-handler-ref="customLoginFailHandler"/>
 
         <!--로그아웃 페이지로 이동-->
         <!--지정하지 않으면 customLogout의 form 속성에서 action 값을 다른 값으로 써야한다. (기본값 : logout)-->

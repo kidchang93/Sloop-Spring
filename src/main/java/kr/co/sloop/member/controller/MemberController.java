@@ -21,7 +21,7 @@ public class MemberController {
     private final MemberService memberService;
 
     // signupForm.jsp 로 이동
-    @GetMapping("/signup")
+    /*@GetMapping("/signup")
     public String signupForm(){
         return "member/signupForm";
     }
@@ -38,11 +38,11 @@ public class MemberController {
         } else {
             return "member/signupForm";    // 회원가입 실패 시 이동
         }
-    }
+    }*/
 
 
     // 회원가입 성공 후 로그인 하러 가기 버튼 클릭시 LoginForm.jsp 로 이동
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String loginForm(String error , String logout , Model model){
         log.info("error : " + error);
         log.info("logout : " + logout);
@@ -69,7 +69,7 @@ public class MemberController {
             log.info("로그인 실패");
             return "redirect:/member/login";    // 로그인 실패시 다시 GetMapping 의 LoginForm으로 redirect
         }
-    }
+    }*/
 
     // 이메일 중복확인 AJAX
     @PostMapping("/email-check")

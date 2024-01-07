@@ -7,7 +7,7 @@
     <title>S-loop 회원가입</title>
 </head>
 <body>
-<form action="/member/signup" method="post">
+<form action="/register" method="post">
     <p>이 메 일 : <input type="email" name="memberEmail" placeholder="이메일" id="memberEmail" onblur="emailCheck()">
                     <button type="button" name="check-Email" value="중복확인" onclick="emailCheck()">중복확인</button></p>
     <p id="check-result"></p>

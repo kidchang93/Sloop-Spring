@@ -3,6 +3,7 @@ package kr.co.sloop.member.service;
 import kr.co.sloop.member.domain.MemberDTO;
 import kr.co.sloop.member.repository.impl.MemberRepository;
 import kr.co.sloop.member.service.impl.MemberService;
+import kr.co.sloop.security.RegisterFormDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Override
+    /*@Override
     public int signup(MemberDTO memberDTO){
         // 유효성 검사 진행 ----------
         if (memberDTO.getMemberSubjectCode() == null){
@@ -26,9 +27,9 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return memberRepository.signup(memberDTO);
         }
-    }
+    }*/
 
-    @Override
+/*    @Override
     public boolean login(MemberDTO memberDTO) {
         MemberDTO loginMember = memberRepository.login(memberDTO);
         if (loginMember != null){
@@ -36,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return false;
         }
-    }
+    }*/
 
     @Override
     public String emailCheck(String memberEmail) {
@@ -88,7 +89,11 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.deleteByUser(memberIdx);
     }
 
-
+    @Override
+    public boolean signup(RegisterFormDTO registerFormDTO) {
+        int result = memberRepository.signup(registerFormDTO);
+        return (result == 1) ? true : false;
+    }
 
 
 }
