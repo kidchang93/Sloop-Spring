@@ -28,6 +28,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
             이후 CustomAccessDeniedHandler 를
             security-context.xml에 빈으로 등록 */
 
-        response.sendRedirect("/accessError");
+        response.sendRedirect("common/accessError");
     }
 }

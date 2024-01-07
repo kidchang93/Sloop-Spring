@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberAuthDTO {
-    private int memberAuthIdx;
-    private int memberIdx;
+    private int memberAuthIdx;  // 권한의 idx
+    private int memberIdx;      // 외래키
     private String authority;
 }

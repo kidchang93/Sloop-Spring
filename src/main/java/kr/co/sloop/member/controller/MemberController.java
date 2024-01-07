@@ -31,16 +31,26 @@ public class MemberController {
     public String signup(@ModelAttribute MemberDTO memberDTO){
         int signupResult = memberService.signup(memberDTO);
 
+
         if (signupResult > 0){
+            log.info("memberDTO = " + memberDTO);
             return "member/signupSuccess"; // 회원가입 성공 시 이동
         } else {
             return "member/signupForm";    // 회원가입 실패 시 이동
         }
     }
 
+
     // 회원가입 성공 후 로그인 하러 가기 버튼 클릭시 LoginForm.jsp 로 이동
     @GetMapping("/login")
-    public String loginForm(){
+    public String loginForm(String error , String logout , Model model){
+        log.info("error : " + error);
+        log.info("logout : " + logout);
+
+        if (error != null) {
+            model.addAttribute("error", "로그인이 실패하였습니다. 아이디 또는 비밀번호를 다시 확인해주세요.");
+        }
+
         return "member/loginForm";
     }
 

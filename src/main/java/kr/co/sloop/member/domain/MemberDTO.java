@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -27,4 +28,6 @@ public class MemberDTO {
     private String memberGradeCode;        // '학년 카테고리 코드',
     private String memberSubjectCode;      // '과목 카테고리 코드',
     private String memberRegionCode;       // '지역 카테고리 코드',
+    private String authority;            // 회원 권한
+    private List<MemberAuthDTO> authList;   // ResultMap을 이용해 authDTO까지 처리하게 해주는 ListDTO
 }
