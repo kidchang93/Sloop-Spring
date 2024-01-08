@@ -23,8 +23,10 @@ public class SecurityController {
     private final MemberMapper memberMapper;
 
     @GetMapping("/accessError")
-    public void accessDenied(HttpServletResponse response , Authentication auth , Model model){
+    public String accessDenied(HttpServletResponse response , Authentication auth , Model model){
         log.info("auth = {}" , auth);
+        model.addAttribute("msg","접근권한이 없습니다. 올바른 페이지로 이동하세요.");
+        return "accessError";
     }
 
 }

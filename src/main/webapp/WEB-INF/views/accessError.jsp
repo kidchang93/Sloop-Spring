@@ -7,6 +7,6 @@
 <body>
 
 <h1>해당 페이지에 접근 권한이 없습니다.</h1>
-
+<h2><c:out value="${msg}"/></h2>
 </body>
 </html>
