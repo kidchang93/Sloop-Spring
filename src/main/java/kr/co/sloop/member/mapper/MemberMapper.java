@@ -29,9 +29,11 @@ public interface MemberMapper {
 
     int deleteByUser(int memberIdx);
 
-    LoginUserDTO.MemberVO AdminLogin(String memberEmail);
+    LoginUserDTO.MemberVO adminLogin(MemberDTO memberDTO);
 
-    LoginUserDTO.MemberVO MemberLogin(MemberDTO memberDTO);
+    LoginUserDTO.MemberVO memberLogin(MemberDTO memberDTO);
 
     int signup(RegisterFormDTO registerFormDTO);
+
+    MemberDTO findByUserName(String memberEmail);
 }

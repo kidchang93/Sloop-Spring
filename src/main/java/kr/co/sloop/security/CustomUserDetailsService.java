@@ -18,26 +18,26 @@ import org.springframework.util.StringUtils;
 @Log4j2
 public class CustomUserDetailsService implements UserDetailsService {
 
-@Autowired
+  @Autowired
   private MemberMapper memberMapper;
   @Override
-  public UserDetails loadUserByUsername(String memberEmail) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    log.warn("loadUserByUserName = " + memberEmail);
+    log.warn("loadUserByUserName = " + username);
 
-    if (!StringUtils.hasText(memberEmail)){
+
+    if (!StringUtils.hasText(username)){
       throw new UsernameNotFoundException("이메일을 입력해주세요.");
     }
+    /** username 은 시큐리티 로그인시에만 적용하기로 한다. memberEmail이란 변수는 여러곳에서 사용중이어서
+     * 변수명에서 충돌이 일어난다.*/
 
-
-    LoginUserDTO.MemberVO result ;
-
-    MemberDTO memberDTO = memberMapper.findByMemberEmail(memberEmail);
-
+    MemberDTO memberDTO = memberMapper.findByUserName(username);
+    LoginUserDTO.MemberVO result = null;
     if (memberDTO.getAuthority().equals("ROLE_ADMIN")){
-      result = memberMapper.AdminLogin(memberEmail);
+      result = memberMapper.adminLogin(memberDTO);
     } else if (memberDTO.getAuthority().equals("ROLE_MEMBER")){
-      result = memberMapper.MemberLogin(memberDTO);
+      result = memberMapper.memberLogin(memberDTO);
     } else {
       throw new UsernameNotFoundException("아무런 권한이 부여되지 않은 회원입니다.");
     }
@@ -62,7 +62,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     } else {
 
       /** 기존에는 password만을 읽어서 판별했지만 아이디조차 없는 경우 해당 예외를 처리 */
-      throw new UsernameNotFoundException("일치하는 사용자가 없습니다." + memberEmail);
+      throw new UsernameNotFoundException("일치하는 사용자가 없습니다." + username);
     }
   }
 }

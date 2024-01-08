@@ -11,9 +11,6 @@ import java.util.List;
 
 
 @Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 @Valid
 public class MemberDTO {
     private int memberIdx;              // '회원 index',
@@ -30,4 +27,9 @@ public class MemberDTO {
     private String memberRegionCode;       // '지역 카테고리 코드',
     private String authority;            // 회원 권한
     private List<MemberAuthDTO> authList;   // ResultMap을 이용해 authDTO까지 처리하게 해주는 ListDTO
+
+    /*public String getUserName() {
+        return memberEmail;
+    }*/
 }
+

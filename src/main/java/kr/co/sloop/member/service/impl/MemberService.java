@@ -15,14 +15,15 @@ public interface MemberService {
     boolean login(MemberDTO memberDTO);
 */
 
-    String emailCheck(String memberEmail);
+
 
     List<MemberDTO> findMemberList(Model model);
 
     String nicknameCheck(String memberNickname);
 
-
     MemberDTO findByMemberEmail(String loginEmail);
+
+    String emailCheck(String memberEmail);
 
     boolean update(MemberDTO memberDTO);
 

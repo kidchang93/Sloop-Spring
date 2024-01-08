@@ -42,7 +42,7 @@
         <!-- 커스텀 로그인 폼-->
         <!--success 핸들러가 있다면 적어줌-->
         <!--파라미터를 설정하지 않으면 username , password 가 기본값-->
-        <security:form-login login-page="/login" username-parameter="memberEmail" password-parameter="memberPassword"
+        <security:form-login login-page="/login"
                              authentication-success-handler-ref="customLoginSuccessHandler"
                              authentication-failure-handler-ref="customLoginFailHandler"/>
 
@@ -51,7 +51,7 @@
         <security:logout logout-url="/member/logout" invalidate-session="true"/>
 
         <!--csrf 공격 방어하기위해 사용-->
-        <!--<security:csrf disabled="true"/>-->
+        <security:csrf disabled="true"/>
     </security:http>
     <!--권한 부여-->
     <security:authentication-manager>

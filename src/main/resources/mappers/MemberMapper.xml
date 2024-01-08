@@ -28,7 +28,16 @@
         from  member
         where memberEmail = #{loginEmail}
     </select>
-    <select id="findByMemberNickname" parameterType="String" resultType="member">
+
+    <select id="findByUserName" parameterType="String" resultType="member">
+        select memberIdx, memberEmail, memberPassword,
+               memberNickname, memberGender, memberPhonenumber, memberSchool, memberGradeCode,
+               memberSubjectCode, memberRegionCode , authority
+        from  member
+        where memberEmail = #{username}
+    </select>
+
+    <select id="findByMemberNickname" parameterType="String" resultType="kr.co.sloop.security.LoginUserDTO$MemberVO">
         select memberEmail, memberPassword, memberNickname, memberPhonenumber
         from  member
         where memberNickname = #{memberNickname}
@@ -64,22 +73,22 @@
         delete from member where memberIdx = #{memberIdx}
     </delete>
 
-    <select id="AdminLogin" resultType="kr.co.sloop.security.LoginUserDTO$MemberVO">
+    <select id="adminLogin" parameterType="member" resultType="kr.co.sloop.security.LoginUserDTO$MemberVO">
         select memberIdx, memberEmail, memberPassword,
                memberNickname, memberGender, memberPhonenumber, memberSchool, memberGradeCode,
                memberSubjectCode, memberRegionCode, authority
         from member
         where memberEmail = #{memberEmail}
-        and memberPassword = #{memberPassword}
+          and memberPassword = #{memberPassword}
     </select>
 
-    <select id="MemberLogin" resultType="kr.co.sloop.security.LoginUserDTO$MemberVO">
+    <select id="memberLogin" parameterType="member" resultType="kr.co.sloop.security.LoginUserDTO$MemberVO">
         select memberIdx, memberEmail, memberPassword,
                memberNickname, memberGender, memberPhonenumber, memberSchool, memberGradeCode,
                memberSubjectCode, memberRegionCode, authority
         from member
         where memberEmail = #{memberEmail}
-        and memberPassword = #{memberPassword}
+          and memberPassword = #{memberPassword}
     </select>
 
     <insert id="signup" parameterType="kr.co.sloop.security.RegisterFormDTO">

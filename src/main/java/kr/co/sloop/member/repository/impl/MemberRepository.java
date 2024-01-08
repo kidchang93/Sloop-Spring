@@ -29,4 +29,5 @@ public interface MemberRepository {
 
 
     int signup(RegisterFormDTO registerFormDTO);
+
 }

@@ -7,8 +7,8 @@
 <body>
 <h2><c:out value="${error}"/></h2>
 <form action="/login" method="post">
-    <input type="text" name="memberEmail" placeholder="이메일"><br>
-    <input type="password" name="memberPassword" placeholder="비밀번호"><br>
+    <input type="text" name="username" placeholder="이메일"><br>
+    <input type="password" name="password" placeholder="비밀번호"><br>
     <input type="submit" value="로그인">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 </form>

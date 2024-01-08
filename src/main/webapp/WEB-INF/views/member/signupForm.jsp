@@ -83,7 +83,7 @@
         $.ajax({
             // 요청방식: post, url: "email-check", 데이터: 이메일
             type: "post",
-            url: "/member/email-check",
+            url: "/register/email-check",
             data: {
                 "memberEmail": email
             },

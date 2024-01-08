@@ -69,4 +69,6 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
 
+
+
 }
