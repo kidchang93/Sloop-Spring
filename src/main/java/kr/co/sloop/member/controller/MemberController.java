@@ -72,7 +72,7 @@ public class MemberController {
     }*/
 
     // 이메일 중복확인 AJAX
-    @PostMapping("/email-check")
+    /*@PostMapping("/email-check")
     public @ResponseBody String emailCheck(@RequestParam("memberEmail") String memberEmail){
         System.out.println("memberEmail = " + memberEmail);
         String checkResult = memberService.emailCheck(memberEmail);
@@ -84,7 +84,7 @@ public class MemberController {
         log.info("memberNickname == "+memberNickname);
         String checkResult = memberService.nicknameCheck(memberNickname);
         return checkResult;
-    }
+    }*/
     // 회원 목록 보기 추후에 관리자 권한으로만 갈 수 있게하기
     @GetMapping("memberList")
     public String memberList(Model model){

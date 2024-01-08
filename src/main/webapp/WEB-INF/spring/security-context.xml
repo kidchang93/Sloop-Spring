@@ -32,7 +32,7 @@
         <security:intercept-url pattern="/login" access="permitAll()"/>
         <security:intercept-url pattern="/member/mypage" access="hasRole('ROLE_MEMBER')"/>
         <!--스터디장 (스터디장은 해당 스터디원들 리스트들을 볼 수는 있다.)-->
-        <security:intercept-url pattern="/member/" access="hasRole('ROLE_MANAGER')"/>
+        <!--<security:intercept-url pattern="/member/" access="hasRole('ROLE_MANAGER')"/>-->
         <security:intercept-url pattern="/member/memberList" access="hasRole('ROLE_ADMIN')"/>
 
         <!--Implement로 error메세지 출력할때 ( Bean에 등록해서 사용 )-->
