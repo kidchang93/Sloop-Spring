@@ -79,7 +79,7 @@
                memberSubjectCode, memberRegionCode, authority
         from member
         where memberEmail = #{memberEmail}
-          and memberPassword = #{memberPassword}
+        and memberPassword = #{memberPassword}
     </select>
 
     <insert id="signup" parameterType="kr.co.sloop.security.RegisterFormDTO">

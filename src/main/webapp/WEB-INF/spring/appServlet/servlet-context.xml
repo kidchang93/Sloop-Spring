@@ -33,10 +33,10 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	<!-- ckeditor 통해 업로드된 사진의 저장 경로 -->
-	<beans:bean class="java.lang.String" id="uploadPath">
+	<!--<beans:bean class="java.lang.String" id="uploadPath">
 		<beans:constructor-arg value="/Users/thegreatjy/Documents"></beans:constructor-arg>
 	</beans:bean>
-	<resources mapping="/uploads/**" location="/resources/uploads/" />
+	<resources mapping="/uploads/**" location="/resources/uploads/" />-->
 
 	<!-- 이창규 - 주석 아래로 작성 -->
 

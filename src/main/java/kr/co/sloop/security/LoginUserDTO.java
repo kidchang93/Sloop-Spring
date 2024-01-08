@@ -5,6 +5,7 @@ import kr.co.sloop.member.domain.MemberDTO;
 import lombok.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +29,12 @@ public class LoginUserDTO extends User {
     private String authority;            // 회원 권한
 
     public LoginUserDTO(MemberVO memberVO, List<SimpleGrantedAuthority> authorityList){
-        super(memberVO.getMemberEmail(),memberVO.getMemberPassword(),authorityList);
+        // 비밀번호가 null 또는 빈 경우 빈 문자열 사용
+        super(memberVO.getMemberEmail(),
+                StringUtils.hasText(memberVO.getMemberPassword()) ? memberVO.getMemberPassword() : "",
+                authorityList
+        );
+
 
         this.memberIdx = memberVO.getMemberIdx();
         this.memberEmail = memberVO.getMemberEmail();
@@ -52,7 +58,6 @@ public class LoginUserDTO extends User {
     public static class MemberVO{
 
         private int memberIdx;              // '회원 index',
-
         private String memberEmail;         // '회원 이메일',
         private String memberPassword;      //'회원 비밀번호',
         private String memberNickname;      // '회원 닉네임',

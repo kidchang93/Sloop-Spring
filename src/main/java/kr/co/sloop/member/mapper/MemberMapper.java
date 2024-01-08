@@ -31,7 +31,7 @@ public interface MemberMapper {
 
     LoginUserDTO.MemberVO AdminLogin(String memberEmail);
 
-    LoginUserDTO.MemberVO MemberLogin(String memberEmail);
+    LoginUserDTO.MemberVO MemberLogin(MemberDTO memberDTO);
 
     int signup(RegisterFormDTO registerFormDTO);
 }

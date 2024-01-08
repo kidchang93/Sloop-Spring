@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,22 +29,25 @@ public class CustomUserDetailsService implements UserDetailsService {
       throw new UsernameNotFoundException("이메일을 입력해주세요.");
     }
 
-    MemberDTO dto = new MemberDTO();
-    String type = dto.getAuthority();
-    LoginUserDTO.MemberVO result = null;
 
-    if (type.equals("ROLE_ADMIN")){
+    LoginUserDTO.MemberVO result ;
+
+    MemberDTO memberDTO = memberMapper.findByMemberEmail(memberEmail);
+
+    if (memberDTO.getAuthority().equals("ROLE_ADMIN")){
       result = memberMapper.AdminLogin(memberEmail);
-    } else if (type.equals("ROLE_MEMBER")){
-      result = memberMapper.MemberLogin(memberEmail);
+    } else if (memberDTO.getAuthority().equals("ROLE_MEMBER")){
+      result = memberMapper.MemberLogin(memberDTO);
     } else {
       throw new UsernameNotFoundException("아무런 권한이 부여되지 않은 회원입니다.");
     }
 
     if (result != null){
+
       LoginUserDTO.MemberVO memberVO = LoginUserDTO.MemberVO.builder()
               .memberIdx(result.getMemberIdx())
               .memberEmail(result.getMemberEmail())
+              .memberPassword(result.getMemberPassword())
               .memberNickname(result.getMemberNickname())
               .memberGender(result.getMemberGender())
               .memberRegdate(result.getMemberRegdate())

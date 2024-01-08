@@ -47,6 +47,7 @@ public class RegisterController {
         // 비밀번호 암호화
 
         registerFormDTO.setMemberPassword(passwordEncoder.encode(registerFormDTO.getMemberPassword()));
+
         int registerResult = memberService.signup(registerFormDTO);
         if (registerResult > 0) {
             log.info("회원가입 성공");
