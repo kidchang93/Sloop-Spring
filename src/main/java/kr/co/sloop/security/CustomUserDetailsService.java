@@ -15,6 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
+import java.util.Enumeration;
+
 @Log4j2
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -59,6 +64,7 @@ public class CustomUserDetailsService implements UserDetailsService {
               .authority(result.getAuthority())
               .build();
       return new LoginUserDTO(memberVO, memberVO.getAuthorityList());
+
     } else {
 
       /** 기존에는 password만을 읽어서 판별했지만 아이디조차 없는 경우 해당 예외를 처리 */

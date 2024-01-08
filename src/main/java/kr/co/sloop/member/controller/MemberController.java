@@ -1,15 +1,20 @@
 package kr.co.sloop.member.controller;
 
 
+import com.sun.security.auth.UserPrincipal;
 import kr.co.sloop.member.domain.MemberDTO;
 import kr.co.sloop.member.service.impl.MemberService;
+import kr.co.sloop.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -95,7 +100,9 @@ public class MemberController {
 
     // update.jsp의 Form 출력
     @GetMapping("update")
-    public String updateForm(Model model , HttpSession session){
+    public String updateForm(Model model , HttpSession session , Principal principal){
+
+        log.info("!!!!!----update 입장---------");
         // 세션에 저장된 이메일 가져오기
         String loginEmail = (String) session.getAttribute("loginEmail");    // 세션에 저장된 이메일로 정보 가져오기
         if (loginEmail != null) {
@@ -131,7 +138,9 @@ public class MemberController {
 
     // 꼭 로그인 후 마이페이지로 이동 ( 회원의 기능 )
     @GetMapping("mypage")
-    public String mypage(@ModelAttribute MemberDTO memberDTO , Model model , HttpSession session){
+    public String mypage(@ModelAttribute MemberDTO memberDTO , Model model , HttpSession session ,
+                         @AuthenticationPrincipal CustomUserDetailsService customUserDetailsService){
+
 
         String loginEmail = (String) session.getAttribute("loginEmail");    // 세션에 저장된 이메일로 정보 가져오기
         memberDTO = memberService.findByMemberEmail(loginEmail);
@@ -142,7 +151,7 @@ public class MemberController {
             log.info("mypage data ........" + memberDTO);
 
             return "redirect:/member?memberIdx="+memberDTO.getMemberIdx();  // 세션에 저장된 아이디에 맞는 마이페이지로 이동
-        } else{
+        } else {
             return "member/loginForm"; // 세션에 있는 아이디가 없거나 맞지 않으면 loginForm으로 이동
         }
 

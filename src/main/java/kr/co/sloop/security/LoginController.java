@@ -21,8 +21,10 @@ public class LoginController {
 
     @GetMapping(value = "/login")
     public String LoginForm(Principal principal , HttpServletRequest request , Model model){
+
         log.info("Principal = " + principal);
         HttpSession session = request.getSession();
+
         if (session.getAttribute("loginFailMsg") != null){
             model.addAttribute("loginFailMsg" , session.getAttribute("loginFailMsg"));
             session.removeAttribute("loginFailMsg");

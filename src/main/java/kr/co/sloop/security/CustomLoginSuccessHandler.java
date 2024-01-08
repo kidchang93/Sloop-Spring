@@ -7,6 +7,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         auth.getAuthorities().forEach(authority -> {
             roleNames.add(authority.getAuthority());
         });
+
 
         log.warn("ROLE NAMES : " + roleNames);
         response.sendRedirect("/");

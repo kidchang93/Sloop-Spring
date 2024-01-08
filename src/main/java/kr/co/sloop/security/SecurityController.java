@@ -9,8 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 @Log4j2
 @Controller
@@ -28,5 +30,4 @@ public class SecurityController {
         model.addAttribute("msg","접근권한이 없습니다. 올바른 페이지로 이동하세요.");
         return "accessError";
     }
-
 }
