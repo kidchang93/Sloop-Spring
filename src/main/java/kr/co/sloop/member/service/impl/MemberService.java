@@ -31,5 +31,5 @@ public interface MemberService {
     int deleteByUser(int memberIdx);
 
 
-    boolean signup(RegisterFormDTO registerFormDTO);
+    int signup(RegisterFormDTO registerFormDTO);
 }

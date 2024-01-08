@@ -27,5 +27,6 @@ public interface MemberRepository {
 
     int deleteByUser(int memberIdx);
 
+
     int signup(RegisterFormDTO registerFormDTO);
 }

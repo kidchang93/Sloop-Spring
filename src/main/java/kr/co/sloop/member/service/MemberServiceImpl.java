@@ -90,9 +90,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean signup(RegisterFormDTO registerFormDTO) {
-        int result = memberRepository.signup(registerFormDTO);
-        return (result == 1) ? true : false;
+    public int signup(RegisterFormDTO registerFormDTO) {
+
+        if (registerFormDTO.getMemberEmail() == null) {
+            return -1;
+        } else {
+            return memberRepository.signup(registerFormDTO);
+        }
     }
 
 
