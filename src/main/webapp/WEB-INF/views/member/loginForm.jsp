@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+>>>>>>> 9d56208400e79419e2ac9918c6dd9bab1efe6bd0
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,4 +15,5 @@
 </form>
 <a href="/member/signup">회원가입하러가기</a>
 </body>
+
 </html>

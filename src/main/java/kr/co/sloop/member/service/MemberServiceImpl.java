@@ -3,6 +3,7 @@ package kr.co.sloop.member.service;
 import kr.co.sloop.member.domain.MemberDTO;
 import kr.co.sloop.member.repository.impl.MemberRepository;
 import kr.co.sloop.member.service.impl.MemberService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,10 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+
     @Override
     public Map<String, String> login(MemberDTO memberDTO) {
+
         MemberDTO loginMember = memberRepository.login(memberDTO);
         if (loginMember != null){
             Map<String, String> loginSessionMap = new HashMap<String, String>();
@@ -43,8 +46,6 @@ public class MemberServiceImpl implements MemberService {
             return null;
         }
     }
-
-
 
 
     @Override
@@ -97,7 +98,6 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int deleteByUser(int memberIdx) {
         return memberRepository.deleteByUser(memberIdx);
-    }
 
     /*@Override
     public int signup(RegisterFormDTO registerFormDTO) {
@@ -109,5 +109,5 @@ public class MemberServiceImpl implements MemberService {
         }
     }*/
 
-
+}
 }

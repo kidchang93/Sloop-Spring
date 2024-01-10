@@ -27,9 +27,12 @@ public interface MemberMapper {
 
     /*LoginUserDTO.MemberVO adminLogin(MemberDTO memberDTO);
 
+
     LoginUserDTO.MemberVO memberLogin(MemberDTO memberDTO);
 
     int signup(RegisterFormDTO registerFormDTO);
 
+
     MemberDTO findByUserName(String memberEmail);*/
+
 }

@@ -11,9 +11,7 @@ import java.util.Map;
 public interface MemberService {
     int signup(MemberDTO memberDTO);
 
-
     Map<String, String> login(MemberDTO memberDTO);
-
 
     List<MemberDTO> findMemberList(Model model);
 
@@ -29,8 +27,6 @@ public interface MemberService {
 
     int deleteByUser(int memberIdx);
 
-
-
-
     /* int signup(RegisterFormDTO registerFormDTO);*/
+
 }

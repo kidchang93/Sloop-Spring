@@ -27,8 +27,10 @@
 	<a href="/postforum/list">자유 게시판</a><br>
 
 	<!-- 이창규 - 주석 아래로 작성 -->
-  	<a href="/member/login">로그인</a><br>
-	<a href="/member/signup">회원가입</a>
+
+  	<a href="/login">로그인</a><br>
+	<a href="/register">회원가입</a>
+
 	<a href="/member/memberList">회원리스트</a>
 	<a href="/member/mypage">마이페이지</a>
 	<!-- 차소영 - 주석 아래로 작성 -->

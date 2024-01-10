@@ -23,51 +23,50 @@ public class MemberRepositoryImpl implements MemberRepository {
     private final MemberMapper memberMapper;
 
     @Override
-    public int signup(MemberDTO memberDTO){
+    public int signup(MemberDTO memberDTO) {
         return memberMapper.signup(memberDTO);
+
     }
 
     @Override
     public MemberDTO login(MemberDTO memberDTO) {
         return memberMapper.login(memberDTO);
-    }
 
+    }
     @Override
-    public MemberDTO findByMemberEmail(String loginEmail) {
+    public MemberDTO findByMemberEmail (String loginEmail){
         return memberMapper.findByMemberEmail(loginEmail);
     }
 
     @Override
-    public List<MemberDTO> findMemberList(Model model) {
+    public List<MemberDTO> findMemberList (Model model){
         return memberMapper.findMemberList(model);
     }
 
     @Override
-    public MemberDTO findByMemberNickname(String memberNickname) {
+    public MemberDTO findByMemberNickname (String memberNickname){
         return memberMapper.findByMemberNickname(memberNickname);
     }
 
     @Override
-    public int update(MemberDTO memberDTO) {
+    public int update (MemberDTO memberDTO){
         return memberMapper.update(memberDTO);
     }
 
     @Override
-    public MemberDTO findByIdx(int memberIdx) {
+    public MemberDTO findByIdx ( int memberIdx){
         return memberMapper.findByIdx(memberIdx);
     }
 
     @Override
-    public int deleteByUser(int memberIdx) {
+    public int deleteByUser ( int memberIdx){
         return memberMapper.deleteByUser(memberIdx);
+
     }
 
     /*@Override
     public int signup(RegisterFormDTO registerFormDTO) {
         return memberMapper.signup(registerFormDTO);
     }*/
-
-
-
 
 }

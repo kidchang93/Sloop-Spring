@@ -47,8 +47,22 @@
         <th>지역</th>
         <td>${member.memberRegionCode}</td>
     </tr>
+    <tr>
+        <td>
+            <button onclick="location.href ='/member/logout' ">로그아웃</button>
+        </td>
+        <td>
+        <button onclick="deleteMember('${member.memberIdx}')">회원탈퇴</button>
+        </td>
+    </tr>
 </table>
-<a href="/member/logout">로그아웃</a><br>
-<a href="/member/delete">회원 탈퇴</a>
 </body>
+<script>
+    const deleteMember = (memberIdx) => {
+        console.log(memberIdx);
+        location.href = "/member/delete?memberIdx="+memberIdx;
+    }
+
+
+</script>
 </html>

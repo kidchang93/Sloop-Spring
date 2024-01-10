@@ -5,15 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@Valid
 public class MemberDTO {
     private int memberIdx;              // '회원 index',
+
     private String memberEmail;         // '회원 이메일',
     private String memberPassword;      //'회원 비밀번호',
     private String memberNickname;      // '회원 닉네임',
@@ -24,4 +25,10 @@ public class MemberDTO {
     private String memberGradeCode;        // '학년 카테고리 코드',
     private String memberSubjectCode;      // '과목 카테고리 코드',
     private String memberRegionCode;       // '지역 카테고리 코드',
+    private String authority;            // 회원 권한
+
+    /*public String getUserName() {
+        return memberEmail;
+    }*/
 }
+

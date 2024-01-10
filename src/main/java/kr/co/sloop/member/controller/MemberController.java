@@ -1,15 +1,19 @@
 package kr.co.sloop.member.controller;
 
 
+import com.sun.security.auth.UserPrincipal;
 import kr.co.sloop.member.domain.MemberDTO;
 import kr.co.sloop.member.service.impl.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -32,16 +36,21 @@ public class MemberController {
     public String signup(@ModelAttribute MemberDTO memberDTO){
         int signupResult = memberService.signup(memberDTO);
 
+
         if (signupResult > 0){
+
             return "member/signupSuccess"; // 회원가입 성공 시 이동
         } else {
             return "member/signupForm";    // 회원가입 실패 시 이동
         }
     }
 
+
     // 회원가입 성공 후 로그인 하러 가기 버튼 클릭시 LoginForm.jsp 로 이동
+
     @GetMapping("/login")
     public String loginForm(){
+
         return "member/loginForm";
     }
 
@@ -88,7 +97,9 @@ public class MemberController {
 
     // update.jsp의 Form 출력
     @GetMapping("update")
-    public String updateForm(Model model , HttpSession session){
+    public String updateForm(Model model , HttpSession session , Principal principal){
+
+        log.info("!!!!!----update 입장---------");
         // 세션에 저장된 이메일 가져오기
         String loginEmail = (String) session.getAttribute("loginEmail");    // 세션에 저장된 이메일로 정보 가져오기
         if (loginEmail != null) {
@@ -96,7 +107,7 @@ public class MemberController {
             model.addAttribute("member", memberDTO);
             return "member/update";
         } else {
-            return "redirect:/member/login";
+            return "redirect:/member/member/login";
         }
 
 
@@ -108,9 +119,9 @@ public class MemberController {
     public String update (@ModelAttribute MemberDTO memberDTO){
         boolean result = memberService.update(memberDTO);
         if (result) {
-            return "redirect:/member?memberIdx=" + memberDTO.getMemberIdx();    // update 성공시 redirect로 상세보기 화면 출력
+            return "redirect:/member/member?memberIdx=" + memberDTO.getMemberIdx();    // update 성공시 redirect로 상세보기 화면 출력
         } else {
-            return "redirect:/member/update";  // update 실패시 다시 수정할 수 있게 update.jsp로 정보 가져가면서 redirect 어케함?
+            return "redirect:/member/member/update";  // update 실패시 다시 수정할 수 있게 update.jsp로 정보 가져가면서 redirect 어케함?
         }
     }
 
@@ -124,7 +135,8 @@ public class MemberController {
 
     // 꼭 로그인 후 마이페이지로 이동 ( 회원의 기능 )
     @GetMapping("mypage")
-    public String mypage(@ModelAttribute MemberDTO memberDTO , Model model , HttpSession session){
+    public String mypage(@ModelAttribute MemberDTO memberDTO , Model model , HttpSession session ){
+
 
         String loginEmail = (String) session.getAttribute("loginEmail");    // 세션에 저장된 이메일로 정보 가져오기
         memberDTO = memberService.findByMemberEmail(loginEmail);
@@ -135,7 +147,9 @@ public class MemberController {
             log.info("mypage data ........" + memberDTO);
 
             return "redirect:/member?memberIdx="+memberDTO.getMemberIdx();  // 세션에 저장된 아이디에 맞는 마이페이지로 이동
+
         } else{
+
             return "member/loginForm"; // 세션에 있는 아이디가 없거나 맞지 않으면 loginForm으로 이동
         }
 
@@ -145,10 +159,10 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "logout";    // 로그아웃 페이지로 이동
+        return "member/logout";    // 로그아웃 페이지로 이동
     }
 
-    // 회원 탈퇴 시
+    // 리스트에서 회원 삭제시 & 회원 탈퇴 시
     @GetMapping("/delete")
     public String deleteByUser(@RequestParam ("memberIdx") int memberIdx){
         int deleteResult = memberService.deleteByUser(memberIdx);
