@@ -234,7 +234,7 @@
 
             if (email === "" || !regex.test(email)) { // 형식에 맞지 않거나 빈 문자열이라면
                 checkResult.style.color = "red"
-                checkResult.innerHTML = "이메일을 형식에 맞게 입력하세요.(공백X)"
+                checkResult.innerText = "이메일을 형식에 맞게 입력하세요.(공백X)"
             } else { // 형식에 맞을때
                 $.ajax({
                     // 요청방식: post, url: "email-check", 데이터: 이메일
@@ -276,7 +276,7 @@
         let regex2 = new RegExp('[a-zA-Z][a-zA-Z0-9_]{2,19}');
         if (nickname === "" || !regex2.test(nickname)) { // 형식에 맞지 않거나 빈 문자열이라면
             checkResult2.style.color = "red"
-            // checkResult2.innerHTML = "닉네임을 형식에 맞게 기입하세요.(공백X)"
+            checkResult2.innerHTML = "닉네임을 형식에 맞게 기입하세요.(공백X)"
         } else { // 형식에 맞을때
             $.ajax({
 
